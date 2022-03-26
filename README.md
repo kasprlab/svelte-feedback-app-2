@@ -1,6 +1,6 @@
-# Project Notes
+# Project notes
 
-This is second attempt to build feedback all in svelte with GitHub
+This is the second attempt to build feedback all in svelte with GitHub
 
 ---
 
