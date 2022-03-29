@@ -1,11 +1,13 @@
 <script>
 import Card from './Card.svelte'
 import Button from './Button.svelte'
+import RatingSelect from './RatingSelect.svelte'
 
 let text = ''
 let btnDisable = true
 let min = 10
 let message
+let rating = 10
 
 const handleInput = () => {
   if(text.trim().length <= min){
@@ -17,6 +19,11 @@ const handleInput = () => {
   }
 
 }
+
+const handleSelect = (e) => {
+  rating = e.detail
+  console.log(e.detail)
+}
 </script>
 
 <Card>
@@ -24,7 +31,7 @@ const handleInput = () => {
     <h2>How would you rate your service with us?</h2>
   </header>
   <form action="">
-    <!-- Rating Select-->
+    <RatingSelect on:rating-selected={handleSelect}/>
     <div class="input-group">
       <input type="text" on:input={handleInput} bind:value={text} Placeholder="Tell us something that keeps you coming back">
       <Button disabled={btnDisable} type="submit">Send</Button>
