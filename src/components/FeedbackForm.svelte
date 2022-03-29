@@ -1,5 +1,22 @@
 <script>
 import Card from './Card.svelte'
+import Button from './Button.svelte'
+
+let text = ''
+let btnDisable = true
+let min = 10
+let message
+
+const handleInput = () => {
+  if(text.trim().length <= min){
+    message = `Text must be at lease ${min} characters`
+    btnDisable = true
+  } else {
+    message = null
+    btnDisable = false
+  }
+
+}
 </script>
 
 <Card>
@@ -9,9 +26,14 @@ import Card from './Card.svelte'
   <form action="">
     <!-- Rating Select-->
     <div class="input-group">
-      <input type="text" Placeholder="Tell us something that keeps you coming back">
-      <button>Send</button>
+      <input type="text" on:input={handleInput} bind:value={text} Placeholder="Tell us something that keeps you coming back">
+      <Button disabled={btnDisable} type="submit">Send</Button>
     </div>
+    {#if message}
+      <div class="message">
+        {message}
+      </div>
+    {/if}
   </form>
 </Card>
 
@@ -46,4 +68,10 @@ import Card from './Card.svelte'
     outline: none;
   }
 
+  .message {
+    text-align: center;
+    color: rebeccapurple;
+    padding-top: 10px;
+
+  }
 </style>
