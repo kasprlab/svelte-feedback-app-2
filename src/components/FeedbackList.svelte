@@ -1,8 +1,15 @@
 <script>
+
+ import {FeedbackStore} from '../stores'
  import {fade, scale} from 'svelte/transition'
  import FeedbackItem from './FeedbackItem.svelte'
- export let feedback = []
+ let feedback = []
 
+ FeedbackStore.subscribe((data) => feedback = data)
+
+//  onDestroy(() => {
+//   unsubscribe()
+//  })
 </script>
 
 
